@@ -5,6 +5,9 @@ import PizzaForm from './PizzaForm'
 import formSchema from '../validation/formSchema'
 import * as yup from 'yup'
 import axios from 'axios'
+import PizzaImg from '../Assets/Pizza.jpg'
+import styled from 'styled-components'
+import StyledContainer from './Container'
 
 
   const initialFormValues = {
@@ -105,10 +108,11 @@ export default function App(){
   }, [formValues])
 
   return (
-    <div>
+    <StyledContainer>
       <nav>
         <h1>Lambda Eats</h1>
-        <p>Order the best pizza here!</p>
+        <img src={PizzaImg} alt='Pizza'/>
+        <h2>Order the best pizza here!</h2>
         <div className ='nav-links'>
           <Link to ='/'>Home</Link>
           <Link to='/pizza'>Pizza</Link>
@@ -116,10 +120,10 @@ export default function App(){
       </nav>
 
       <Switch>
-        <Route path='/pizza'>
+        <Route exact path='/'>
           <Pizza/>
         </Route>
-        <Route exact path='/'>
+        <Route path='/pizza'>
           <PizzaForm
             values = {formValues} 
             onInputChange = {onInputChange} 
@@ -139,6 +143,6 @@ export default function App(){
 
       </Switch>
 
-    </div>
+    </StyledContainer>
   );
 };
